@@ -18,9 +18,6 @@ RUN apt-get update && apt-get install -y \
 # ---- uv ----
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
-
-RUN source /root/.local/bin/env
-
 # ---- workspace ----
 WORKDIR /workspace
 
