@@ -29,9 +29,10 @@ COPY requirements.uv .
 
 # ---- create venv and install deps ----
 RUN uv venv .venv --python /usr/bin/python3.11 \
- && uv pip --venv .venv install torch==2.2.2 --index-url https://download.pytorch.org/whl/cu121 \
- && uv pip --venv .venv install -r requirements.uv \
- && uv pip --venv .venv install flash-attn==2.7.4.post1 --no-build-isolation
+ && . .venv/bin/activate \
+ && uv pip install torch==2.2.2 --index-url https://download.pytorch.org/whl/cu121 \
+ && uv pip install -r requirements.uv \
+ && uv pip install flash-attn==2.7.4.post1 --no-build-isolation
 
 
 
