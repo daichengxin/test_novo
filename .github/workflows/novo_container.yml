@@ -12,6 +12,7 @@ jobs:
     timeout-minutes: 60
     permissions:
       contents: read
+      packages: write  # 推 GHCR 必须
 
     steps:
       # 1️⃣ Checkout
