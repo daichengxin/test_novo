@@ -28,7 +28,7 @@ RUN uv python pin 3.11
 COPY requirements.uv .
 
 # ---- create venv and install deps ----
-RUN uv venv .venv --python $(uv python path 3.11) \
+RUN uv venv .venv --python /usr/bin/python3.11 \
  && uv pip --venv .venv install torch==2.2.2 --index-url https://download.pytorch.org/whl/cu121 \
  && uv pip --venv .venv install -r requirements.uv \
  && uv pip --venv .venv install flash-attn==2.7.4.post1 --no-build-isolation
