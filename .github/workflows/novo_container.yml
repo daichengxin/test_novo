@@ -54,3 +54,4 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/daichengxin/nova:latest
+          github-token: ${{ secrets.GITHUB_TOKEN }}   # 这里必须有
