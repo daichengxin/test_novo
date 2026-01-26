@@ -1,7 +1,6 @@
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV UV_SYSTEM_PYTHON=1
 # ---- 把 uv 永久加到 PATH ----
 ENV PATH="/root/.local/bin:$PATH"
 
