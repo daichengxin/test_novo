@@ -2,6 +2,8 @@ FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV UV_SYSTEM_PYTHON=1
+# ---- 把 uv 永久加到 PATH ----
+ENV PATH="/root/.local/bin:$PATH"
 
 # ---- system ----
 RUN apt-get update && apt-get install -y \
@@ -16,8 +18,8 @@ RUN apt-get update && apt-get install -y \
 # ---- uv ----
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# ---- 把 uv 永久加到 PATH ----
-ENV PATH="/root/.local/bin:$PATH"
+
+source /root/.local/bin/env
 
 # ---- workspace ----
 WORKDIR /workspace
