@@ -50,5 +50,6 @@ jobs:
       - name: Push Docker Image
         uses: docker/build-push-action@v5
         with:
+          context: .
           push: true
           tags: ghcr.io/daichengxin/nova:latest
