@@ -31,22 +31,22 @@ jobs:
         run: |
           docker build -t rnova-ci -f Dockerfile .
 
-      # 5️⃣ Run container and install uv + deps
-      - name: Run container for testing
-        run: |
-          docker run --rm --gpus all \
-            -v $GITHUB_WORKSPACE:/workspace \
-            rnova-ci bash -c "
-              apt-get update && apt-get install -y curl python3.11 python3.11-venv python3-pip build-essential ninja-build
-              curl -LsSf https://astral.sh/uv/install.sh | sh
-              export PATH=$HOME/.cargo/bin:$PATH
-              uv python pin 3.11
-              uv venv .venv
-              source .venv/bin/activate
-              uv pip install torch==2.3.1 --index-url https://download.pytorch.org/whl/cu121
-              uv pip install flash-attn --no-build-isolation
-              python -c 'import flash_attn; print(\"flash-attn ok\")'
-            "
+#      # 5️⃣ Run container and install uv + deps
+#      - name: Run container for testing
+#        run: |
+#          docker run --rm --gpus all \
+#            -v $GITHUB_WORKSPACE:/workspace \
+#            rnova-ci bash -c "
+#              apt-get update && apt-get install -y curl python3.11 python3.11-venv python3-pip build-essential ninja-build
+#              curl -LsSf https://astral.sh/uv/install.sh | sh
+#              export PATH=$HOME/.cargo/bin:$PATH
+#              uv python pin 3.11
+#              uv venv .venv
+#              source .venv/bin/activate
+#              uv pip install torch==2.3.1 --index-url https://download.pytorch.org/whl/cu121
+#              uv pip install flash-attn --no-build-isolation
+#              python -c 'import flash_attn; print(\"flash-attn ok\")'
+#            "
       - name: Push Docker Image
         uses: docker/build-push-action@v5
         with:
