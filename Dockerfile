@@ -15,7 +15,9 @@ RUN apt-get update && apt-get install -y \
 
 # ---- uv ----
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.cargo/bin:$PATH"
+
+# ---- 把 uv 永久加到 PATH ----
+ENV PATH="/root/.local/bin:$PATH"
 
 # ---- workspace ----
 WORKDIR /workspace
