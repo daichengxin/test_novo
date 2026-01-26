@@ -27,12 +27,11 @@ RUN uv python pin 3.11
 # ---- deps ----
 COPY requirements.uv .
 
-RUN uv venv \
- && . .venv/bin/activate \
- && uv pip install torch==2.2.2 \
-    --index-url https://download.pytorch.org/whl/cu121 \
- && uv pip install -r requirements.uv \
- && uv pip install flash-attn==2.7.4.post1 --no-build-isolation
+# ---- create venv and install deps ----
+RUN uv venv .venv --python $(uv python path 3.11) \
+ && uv pip --venv .venv install torch==2.2.2 --index-url https://download.pytorch.org/whl/cu121 \
+ && uv pip --venv .venv install -r requirements.uv \
+ && uv pip --venv .venv install flash-attn==2.7.4.post1 --no-build-isolation
 
 
 
