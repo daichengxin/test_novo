@@ -31,14 +31,3 @@ RUN uv venv .venv --python /usr/bin/python3.11 \
  && uv pip install torch==2.2.2 --index-url https://download.pytorch.org/whl/cu121 \
  && uv pip install -r requirements.uv \
  && uv pip install flash-attn==2.7.4.post1 --no-build-isolation
-
-# ---- Stage 2: runtime ----
-FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
-
-ENV PATH="/workspace/.venv/bin:$PATH"
-
-WORKDIR /workspace
-
-# Copy venv from builder
-COPY --from=builder /workspace/.venv /workspace/.venv
-COPY --from=builder /workspace/requirements.uv /workspace/requirements.uv
